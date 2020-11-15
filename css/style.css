@@ -1,0 +1,497 @@
+html, body{margin:0; padding:0}
+
+*{box-sizing: border-box; font-family: 'Inter', sans-serif;}
+
+.root-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+header{
+    flex-shrink:0;
+    height:auto;
+    width:100%;
+    color:white;
+    background: #24292f;
+    padding:15px 16px;
+    font-size: 13.5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 1.5;
+}
+
+/*web navigation*/
+.web-header-nav{
+    padding: 20px 32px;
+    height:8vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}@media only screen and (max-width: 770px) {
+    .web-header-nav{
+        display:none;
+    }
+}@media only screen and (max-width: 1010px) {
+    .web-header-nav{
+        padding: 18px;
+    }
+}
+
+.web-header-nav .web-menu-icons{
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
+    width: auto;
+}
+
+/*selecting all its children*/
+.web-header-nav .web-menu-icons.first a, .web-header-nav .web-menu-icons.first  p {
+    margin-right: 16px;
+    height: 31px;
+    width:auto;
+}
+
+/*web nav svg icons on hover*/
+.web-menu-icons svg:hover{cursor:pointer; fill:#c2c0c0;}
+
+/*web nav search bar*/
+.web-menu-icons .input-group{ 
+    width:auto;
+    margin-right: 0;
+}
+
+.web-menu-icons .input-group .search-bar{
+    width:272px;;
+}@media only screen and (min-width: 1010px) {
+    .web-menu-icons input.search-bar[type=text]:focus{
+        width:350px;
+        margin-right: 16px;
+        transition: 0.3s
+    }
+}
+
+/*web nav search key slash*/
+.web-menu-icons .input-group .icon { 
+    position: relative;
+    right:33px;
+}
+
+/*web nav text*/
+.web-menu-icons p{font-weight: 600; position: relative; top:6px;}
+
+.web-menu-icons p:hover{color:#c2c0c0; cursor: pointer;}
+
+.web-menu-icons.second{display: flex; align-items: center;}
+
+/*notification bell, add bell and profile pic*/
+.web-menu-icons.second div.joint{
+    margin-right: 16px;
+    display:flex; 
+    align-items: center;
+}
+
+/*web nav profile pic*/
+.web-menu-icons.second .nav-profile{display: flex; align-items: center;}
+
+.web-menu-icons.second .profile-pic{ margin-right: 0;}
+
+/*dropdown icons*/
+.web-menu-icons.second span{cursor: default; font-size: 16px;}
+
+.web-menu-icons.second span:hover{cursor: pointer;}
+
+/*mobile navigation*/
+.mobile-header-nav{
+    display: flex;
+    flex-direction: column;
+}@media only screen and (min-width: 770px) {
+    .mobile-header-nav{
+        display:none;
+    }
+}
+
+.mobile-header-nav .mobile-menu-icons{ height:4.1vh; width:100%; display: flex; align-items: center; justify-content: space-between;}
+
+/*hamburger menu icon and github logo on hover*/
+.mobile-header-nav .mobile-menu-icons svg:hover{cursor:pointer; fill:#c2c0c0;}
+
+/*sticky header*/
+.sticky-header{
+    border-bottom: 1px solid rgb(210, 214, 219, 0.5);;
+}
+
+/**search bar in mobile nav**/
+
+/*icons within input field*/
+.input-group { 
+    width: 100%; 
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+} 
+
+.input-group .icon { 
+    position: absolute;
+    right: 20px;
+    padding: 5px; 
+    border-radius: 7px;
+    height:auto;
+    color:#c2c0c0;
+} 
+  
+.search-bar { 
+    width: 100%; 
+    padding: 6.5px 12px; 
+    text-align: center; 
+    background: #24292f; 
+    outline: none;
+    border-radius: 7px;
+    border: 1px solid rgb(255,255,255,0.2);
+    text-align: left;
+    font-size: 13.3px;
+    font-weight: 300;
+} 
+
+/*input placeholder*/
+::placeholder{
+    font-family:'Inter', 
+    sans-serif;
+    text-align:left; 
+    color:#cccaca; 
+    padding:6px 0px;
+    font-family: 600;
+}
+
+/*change background color and text color when user types in input field*/
+input.search-bar[type=text]:focus{
+    background-color: #ffffff;
+    color:black;
+    margin-right: 16px;
+    transition: 0.3s
+}
+
+input:focus ~ .icon {
+    display:none;
+}
+
+input.search-bar:focus::placeholder {color:#6d6d77;}
+
+/*mobile menu items only comes into view on toggling hamburger menu icon*/
+.mobile-header-nav .mobile-menu-items{width:100%;  margin-top: 16px; display:none}
+
+.mobile-menu-items p, .mobile-menu-items div:not(.input-group) {
+    margin: 0;
+    padding:8px 0;
+    border-top: 1px solid rgb(255,255,255,0.1);
+    font-weight: 500;
+    font-size: 13.5px;
+}
+
+/*Dashboard*/
+.mobile-menu-items p:nth-child(2){margin-top: 16px;}
+
+/*wenadev profile pic and name*/
+.mobile-menu-items .joint{
+    display: flex; 
+    align-items: center; 
+    margin-right: 5px;
+}
+
+/*web and mobile profile picture*/
+ .nav-profile div.profile-pic{
+    padding:0; 
+    height:auto; 
+    width:20px; 
+    border-top: none; 
+    margin-right: 5px;
+    position: relative; 
+    top:3px;
+}
+ .nav-profile div.profile-pic img{height:100%; width:100%; border-radius: 50%;}
+
+/*mobile nav wenadev text*/
+.mobile-menu-items .nav-profile span{text-decoration: none; color:#ffffff; }
+
+.mobile-menu-items .nav-profile span:hover , .mobile-menu-items p:hover{color:#c2c0c0;cursor: pointer;}
+
+.mobile-menu-items .joint svg{margin-right: 5px;}
+
+header.sticky-header{background-color: white; color:black; height:9vh}
+
+section{
+    flex:1 0 auto;
+    height:auto;
+    width:100%;
+    padding: 0 20px 20px 13px;
+    border:1px solid red;
+    max-width: 1270px;
+    display:flex;
+    flex-wrap: wrap;  
+}@media only screen and (max-width: 770px) {
+    section {padding:0 13px;}
+}
+
+.section-content{
+    border:1px solid brown;
+    width: 100%;
+}@media only screen and (max-width: 770px) {
+    .section-content.one {min-width:100%; height:auto;}
+
+    .section-content.two{min-width:100%;}
+}
+
+.section-content.one {
+    display: flex;
+    flex-direction: column; 
+    width:25%; 
+    padding:0px 8px 8px 0px;
+}@media only screen and (min-width: 1010px) {
+    .section-content.one {
+        padding:0 19.8px 19.2px 5px;
+    }
+}@media only screen and (max-width: 770px) {
+    .section-content.one {
+        height:auto;
+        display:flex;
+        flex-direction: column;
+        border:2px solid green;
+        padding: 0;
+    }
+}
+
+.section-content.two{width:75%;}@media only screen and (max-width: 770px) {
+    .section-content.two{
+        height:75vh;
+    }
+}
+
+/*first section aligned on the left*/
+.section-content.one .web-profile-seperator .profile-status{
+    height:auto; 
+    width:100%;
+    display: flex; 
+    position: relative;
+}@media only screen and (max-width: 770px) {
+    /*responsively change height with smaller screen sizes*/
+    .section-content.one .web-profile-seperator .profile-status{ 
+        width:16.5%;
+        margin-right: 23px;
+    }
+
+    /*remove status svg icon*/
+    .section-content.one .web-profile-seperator .profile-status #status-svg{
+        display:none;
+    }
+}
+
+/*profile pic in first section*/
+.section-content.one .web-profile-seperator .large-profile-pic{
+    width:100%; 
+    height:150px; 
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-origin: content-box;
+    position: relative;
+    bottom:33px;
+    cursor: pointer;
+}@media only screen and (max-width: 770px) {
+    /*responsively change height with smaller screen sizes*/
+    .section-content.one .web-profile-seperator .large-profile-pic{   
+        position:unset;
+    }
+}
+
+.section-content.one .web-profile-seperator .large-profile-pic img{
+    height:100%;
+    width:100%; 
+    border-radius: 50%;
+    object-fit: contain;
+    object-position: center;
+}
+
+/*status svg*/
+.section-content.one .web-profile-seperator .profile-status #status-svg{
+    position: relative;
+    width:0;
+}
+
+#status-svg div{
+    position: absolute; 
+    right:3px; 
+    bottom:66px;
+    background-color: white; 
+    box-shadow: 1px 1px 1px #e0e0e0;
+    padding:11px 10.5px 5.8px 10px;
+    border-radius: 50%;
+}
+
+.section-content.one .web-profile-seperator .name{
+    margin-top:-17px;
+    display: flex;
+    flex-direction: column; 
+}@media only screen and (max-width: 770px) {
+    .section-content.one .web-profile-seperator .name{
+        margin-top: unset;
+    }
+}
+
+.section-content.one .web-profile-seperator .name :nth-child(1){
+    font-weight:500 ;
+    font-size: 25px;
+    letter-spacing: 0.05px;
+}
+
+.section-content.one .web-profile-seperator .name :nth-child(2){
+    font-size: 18px;
+    color: #53535e;
+    font-weight: 200;
+}
+
+.section-content.one  span.bio{
+    line-height:24px; 
+    font-size: 14px; 
+    letter-spacing: 0.4px;
+    margin-top: 16px;
+    color:#3a3a3a;
+}@media only screen and (max-width: 770px) {
+    .section-content.one span.bio.web{
+        display:none;
+    }
+}
+
+.web-profile-seperator{width:100%; height:100%;}@media only screen and (max-width: 770px) {
+    /*activates and aligns items when screen is in smaller screen sizing*/
+    .section-content.one .web-profile-seperator {
+        display: flex;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
+    .section-content.one .name{margin-top: 15px;}
+    /*activates and aligns items when screen is in smaller screen sizing*/
+    .section-content.one .mobile-status {
+        margin-bottom: 8px;
+    }
+
+    .mobile-status .status-field{
+        width: 100%; 
+        padding: 7px 12px; 
+        text-align: center;  
+        outline: none;
+        border-radius: 7px;
+        border:1px solid rgb(210, 214, 219, 0.7);
+        text-align: left;
+        font-size: 13.3px;
+        font-weight: 300;
+    }
+ 
+    .status-field::placeholder{
+    text-align:left; 
+    color: #48484e;
+    padding-left: 22px;
+    font-family: 300;
+    font-size: 11.5px;
+    font-weight: 400;
+    }
+
+    .mobile-status .icon { 
+        position: absolute;
+        left: 20px;
+        padding: 5px; 
+        border-radius: 7px;
+        height:100%;
+        fill:#706f6f;
+    }
+
+    .section-content.one .bio.mobile{margin-top: 0;}
+}
+
+footer{
+    flex-shrink: 0;
+    height:auto;
+    width:100%;
+    padding: 0 16px;
+    max-width: 1300px;
+    font-size: 11.5px;
+    margin-top:40px;
+}
+
+footer p{margin: 0; padding:0}
+
+.footer-items{ 
+    height: auto;
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 8px 45px; 
+    border-top:1px solid rgb(210, 214, 219, 0.5);
+    margin: 0;
+}@media only screen and (max-width: 1010px) {
+    .footer-items {
+        margin:  0 auto;
+        max-width: 97%;
+        padding:40px 10px 45px;
+    }
+}
+
+/*github logo and github copyright text*/
+.footer-items ul li div{
+    display: flex;
+    align-items: center;
+    width:auto;
+    height:100%;
+ 
+}@media only screen and (max-width: 1010px) {
+    .footer-items ul li div{
+        margin-right: 12px;
+    }
+}
+
+/*github logo*/
+.footer-items div:nth-child(1) a{
+    margin-right: 24px;
+}@media only screen and (max-width: 1010px) {
+    .footer-items div:nth-child(1) a{
+        display: none;
+    }
+}
+/*on hover*/
+.footer-items div:nth-child(1) a:hover svg{
+    fill:#606069;
+    cursor: pointer;
+}
+
+/*github copyright text*/
+.footer-items div:nth-child(1) p{color:#606069}
+
+/*github footer items */
+.footer-items ul{ 
+    height: auto;
+    width:100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}@media only screen and (max-width: 850px) {
+    .footer-items ul{  
+        justify-content: center;
+    }
+}
+
+/*list items*/
+.footer-items ul li{ width:auto; margin:5px; }
+
+.footer-items ul li a{text-decoration: none; color: #136dd3}
+.footer-items ul li a:hover{text-decoration: underline;}
