@@ -1,4 +1,6 @@
-html, body{margin:0; padding:0}
+html, body{margin:0; padding:0;}
+
+body{height: auto !important; transition:none;}
 
 *{box-sizing: border-box; font-family: 'Inter', sans-serif;}
 
@@ -8,6 +10,7 @@ html, body{margin:0; padding:0}
     justify-content: center;
     align-items: center;
     height: 100%;
+
     overflow-x: hidden;
 }
 
@@ -28,7 +31,7 @@ header{
 /*web navigation*/
 .web-header-nav{
     padding: 20px 32px;
-    height:8vh;
+    height:62px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -109,21 +112,158 @@ header{
 .mobile-header-nav{
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }@media only screen and (min-width: 770px) {
     .mobile-header-nav{
         display:none;
     }
 }
 
-.mobile-header-nav .mobile-menu-icons{ height:4.1vh; width:100%; display: flex; align-items: center; justify-content: space-between;}
+.mobile-header-nav .mobile-menu-icons{ 
+    height:4.1vh; 
+    width:100%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+}
 
 /*hamburger menu icon and github logo on hover*/
 .mobile-header-nav .mobile-menu-icons svg:hover{cursor:pointer; fill:#c2c0c0;}
 
 /*sticky header*/
+
+header.sticky-header{background-color: white; color:black; height:72px}
+
 .sticky-header{
-    border-bottom: 1px solid rgb(210, 214, 219, 0.5);;
+    border-bottom: 1px solid rgb(210, 214, 219, 0.4);
 }
+
+/*sticky header for web and mobile styling*/
+.sticky-header.web, .sticky-header.mobile{
+    display: flex; 
+    justify-content:center;
+    align-items: flex-end;
+    min-width:100%;
+    padding: 0 25px 0 20px;
+}
+
+/*aligns mobile to mobile to right*/
+.sticky-header .sticky-row {
+    max-width: 1270px; 
+    width:100%; 
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+/*get sticky mobile to occupy entire width*/
+.sticky-header.mobile{
+    min-width: 100vw;
+    padding-left: 10px;
+    transform: translateX(-15px) ;
+    justify-content:flex-start;
+}@media only screen and (max-width: 414px) {
+     .sticky-header.mobile{
+         /*display scroll bar on very small screen size*/
+        overflow: scroll;
+    }
+}
+
+.fixed{
+    position:fixed;
+    top:0;
+}
+
+/*aligns mobile to left*/
+.sticky-header.mobile .sticky-row{justify-content: flex-start;}
+
+.sticky-header.mobile .sticky-row-content{display:flex; align-items: center;}
+
+/*profile attached to sticky header*/
+.sticky-row-content.first{
+    width:25%; 
+    min-height: 100%;
+    align-self: center;
+  
+}
+
+.sticky-row-content.first span{
+    color:#3a3a3a;
+}
+
+.sticky-row-content.first .nav-profile.joint{
+    min-height: 100%;
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    width:100%;
+    font-weight: 600;
+}
+
+.sticky-row-content.first .nav-profile.joint .profile-pic{
+    width:32px;
+}
+
+.sticky-header .sticky-row .sticky-row-content.second{
+    display:flex; 
+    flex-direction: row;
+    justify-content: flex-start;
+    justify-self: flex-end;
+    align-self: flex-end;
+    width:75%;
+}
+
+
+/*Overview, Repositories, Projects, Packages entire content*/
+.sticky-header .sticky-items-icons{
+    display: flex;
+    align-items: center; 
+    padding:8px 14.5px 11px 14.5px;
+    border:2.3px solid transparent;
+    margin-bottom: -1px;
+    transition: border-bottom-color .2s ease-in-out;
+}@media only screen and (max-width: 549px) {
+    .sticky-header .sticky-items-icons svg{
+        display: none;
+    }
+}
+
+.sticky-header .sticky-items-icons:hover{cursor: pointer; border-bottom:2.3px solid #d3d2d2;  }
+
+/*Overview, Repositories, Projects, Packages text*/
+.sticky-header .sticky-items-icons span{
+    color:#2e2e33; 
+    letter-spacing: 0.006px; 
+    font-weight: 400; 
+    font-size: 13.3px; 
+}
+
+/*Overview, Repositories, Projects, Packages associated icons*/
+.sticky-header .sticky-items-icons svg{margin-right: 7px; fill:#979595;}
+
+
+/*Repositories*/
+.sticky-header  .sticky-items-icons.active span#repo{
+    font-weight: 600; 
+    color:#474646;
+} 
+
+/*Repositories associated icon*/
+.sticky-header  .sticky-items-icons.active{border-bottom: 2.3px solid #f87f67}
+
+.sticky-header .sticky-items-icons.active svg{fill:#474646}
+
+/*Number of Repositories*/
+.sticky-header .sticky-items-icons.active span#number-of-repos{
+    margin-left: 6px;
+     background-color:#e7e5e5; 
+     border-radius: 50%;
+     padding:2px 6px;
+    font-size: 11px;
+    font-weight: 500;
+    }
+
+/*sticky header for mobile*/
 
 /**search bar in mobile nav**/
 
@@ -182,7 +322,7 @@ input:focus ~ .icon {
 input.search-bar:focus::placeholder {color:#6d6d77;}
 
 /*mobile menu items only comes into view on toggling hamburger menu icon*/
-.mobile-header-nav .mobile-menu-items{width:100%;  margin-top: 16px; display:none}
+.mobile-header-nav .mobile-menu-items{min-width:100%;  margin-top: 16px; display:none}
 
 .mobile-menu-items p, .mobile-menu-items div:not(.input-group) {
     margin: 0;
@@ -221,14 +361,12 @@ input.search-bar:focus::placeholder {color:#6d6d77;}
 
 .mobile-menu-items .joint svg{margin-right: 5px;}
 
-header.sticky-header{background-color: white; color:black; height:9vh}
-
 section{
     flex:1 0 auto;
     height:auto;
     width:100%;
-    padding: 0 20px 20px 13px;
-    border:1px solid red;
+    padding: 0 28px 20px 13px;
+  
     max-width: 1270px;
     display:flex;
     flex-wrap: wrap;  
@@ -237,12 +375,12 @@ section{
 }
 
 .section-content{
-    border:1px solid brown;
     width: 100%;
+    border:1px solid brown;
 }@media only screen and (max-width: 770px) {
     .section-content.one {min-width:100%; height:auto;}
 
-    .section-content.two{min-width:100%;}
+    .section-content.two{min-width:100%; height: auto;}
 }
 
 .section-content.one {
@@ -259,16 +397,11 @@ section{
         height:auto;
         display:flex;
         flex-direction: column;
-        border:2px solid green;
         padding: 0;
     }
 }
 
-.section-content.two{width:75%;}@media only screen and (max-width: 770px) {
-    .section-content.two{
-        height:75vh;
-    }
-}
+.section-content.one .web-profile-seperator{height:initial}
 
 /*first section aligned on the left*/
 .section-content.one .web-profile-seperator .profile-status{
@@ -323,6 +456,7 @@ section{
     width:0;
 }
 
+
 #status-svg div{
     position: absolute; 
     right:3px; 
@@ -331,7 +465,10 @@ section{
     box-shadow: 1px 1px 1px #e0e0e0;
     padding:11px 10.5px 5.8px 10px;
     border-radius: 50%;
+    cursor: pointer;
 }
+
+#status-svg div:hover .octicon-smiley{fill:#1674e0;}
 
 .section-content.one .web-profile-seperator .name{
     margin-top:-17px;
@@ -367,6 +504,62 @@ section{
     }
 }
 
+.section-content.two{
+    width:75%;
+    padding:16px 12px;
+
+}@media only screen and (max-width: 770px) {
+    .section-content.two{
+        height:auto;
+    }
+}
+
+.section-content.two .status-field{
+    padding:0 15px;
+    width: 100%; 
+    padding: 7px 12px; 
+    text-align: center;  
+    outline: none;
+    border-radius: 7px;
+    border:1px solid rgb(210, 214, 219, 0.7);
+    text-align: left;
+    font-size: 13.3px;
+    font-weight: 400;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.section-content.two .status-field::placeholder{color: #777783;;}
+
+.section-content.two p, .section-content.two input {
+    border-bottom: 1px solid rgb(210, 214, 219, 0.5);
+  }
+
+  .section-content.two p{margin: 0; padding:16px 12px; font-size: 14px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .web-profile-seperator{width:100%; height:100%;}@media only screen and (max-width: 770px) {
     /*activates and aligns items when screen is in smaller screen sizing*/
     .section-content.one .web-profile-seperator {
@@ -378,10 +571,10 @@ section{
     .section-content.one .name{margin-top: 15px;}
     /*activates and aligns items when screen is in smaller screen sizing*/
     .section-content.one .mobile-status {
-        margin-bottom: 8px;
+        margin-bottom: 9px;
     }
 
-    .mobile-status .status-field{
+    .mobile-status .status-field:disabled{
         width: 100%; 
         padding: 7px 12px; 
         text-align: center;  
@@ -391,8 +584,14 @@ section{
         text-align: left;
         font-size: 13.3px;
         font-weight: 300;
+        cursor: pointer;
+        background-color: transparent;
     }
- 
+
+    .mobile-status svg.octicon-smiley{ max-height:5%}
+
+    .mobile-status:hover svg.octicon-smiley {fill:#1674e0; cursor: pointer;}
+
     .status-field::placeholder{
     text-align:left; 
     color: #48484e;
@@ -401,6 +600,8 @@ section{
     font-size: 11.5px;
     font-weight: 400;
     }
+
+    .status-field:hover::placeholder{color:#1674e0}
 
     .mobile-status .icon { 
         position: absolute;
