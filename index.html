@@ -52,14 +52,47 @@
 
           <div class="joint">
             <svg fill="#ffffff" class="octicon octicon-plus" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 2a.75.75 0 01.75.75v4.5h4.5a.75.75 0 010 1.5h-4.5v4.5a.75.75 0 01-1.5 0v-4.5h-4.5a.75.75 0 010-1.5h4.5v-4.5A.75.75 0 018 2z"></path></svg>
-            <span class="material-icons">arrow_drop_down</span>
+            <span class="material-icons new">arrow_drop_down</span>
+            <div class="dropdown-new new">
+              <a href="#">New repository</a>
+              <a href="#">Import repository</a>
+              <a href="#">New gist</a>
+              <a href="#">New organization</a>
+              <a href="#">New project</a>
+            </div>
           </div>
 
           <div class="nav-profile ">
             <div class="profile-pic">
               <img src="assets/profile-pic.jpg" alt="profile-picture wenadev">
             </div>
-            <span class="material-icons">arrow_drop_down</span>
+            <span class="material-icons sign">arrow_drop_down</span>
+            <div class="dropdown-new sign">
+              <a id="signed-in" href="#">Signed in as <span style="font-weight: 600; font-size: 14px;">wenadev</span></a>
+
+              <div class="input-group"> 
+                <svg class="octicon octicon-smiley icon" viewBox="0 0 16 16" version="1.1" width="27" height="27" aria-hidden="true"><path fill-rule="evenodd" 
+                  d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zM5 8a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zM5.32 
+                  9.636a.75.75 0 011.038.175l.007.009c.103.118.22.222.35.31.264.178.683.37 1.285.37.602 0 1.02-.192 1.285-.371.13-.088.247-.192.35-.31l.007-.008a.75.75 
+                  0 111.222.87l-.614-.431c.614.43.614.431.613.431v.001l-.001.002-.002.003-.005.007-.014.019a1.984 1.984 0 01-.184.213c-.16.166-.338.316-.53.445-.63.418-1.37.638-2.127.629-.946 
+                  0-1.652-.308-2.126-.63a3.32 3.32 0 01-.715-.657l-.014-.02-.005-.006-.002-.003v-.002h-.001l.613-.432-.614.43a.75.75 0 01.183-1.044h.001z"></path>
+                  </svg> 
+                <input type="text" class="status-field " name="status" placeholder="Set status" disabled>
+            </div>
+
+              <a href="https://github.com/wenadev">Your profile</a>
+              <a href="https://github.com/wenadev?tab=repositories">Your repositories</a>
+              <a href="#">Your projects</a>
+              <a href="#">Your stars</a>
+              <a href="#">Your gists</a>
+              <p class="dropdown-demarcation"></p>
+              <a href="#">Upgrade</a>
+              <a href="#">Feature preview</a>
+              <a href="#">Help</a>
+              <a href="#">Settings</a>
+              <a href="#">Sign out</a>
+              
+            </div>
           </div>
 
         <div>
@@ -217,6 +250,8 @@
           <div id="public-repo">
             <p><span style="font-weight: bold;" id="public-private-count"></span> results for <span style="font-weight: bold;">public</span> repositories</p>
           </div>
+
+          
           
           <!--public repo details added by javascript-->
         </div>
