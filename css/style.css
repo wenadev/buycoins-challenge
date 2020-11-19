@@ -60,14 +60,14 @@ header{
 }
 
 /*web nav svg icons on hover*/
-.web-menu-icons svg:hover{cursor:pointer; fill:#c2c0c0;}
+.web-menu-icons svg:hover:not(.octicon-plus){cursor:pointer; fill:#c2c0c0;}
+.web-menu-icons span:hover{color:#c2c0c0;cursor: pointer; }
 
 /*web nav search bar*/
 .web-menu-icons .input-group{ 
     width:auto;
     margin-right: 0;
 }
-
 
 
 .web-menu-icons .input-group .search-bar{
@@ -108,7 +108,45 @@ header{
 /*dropdown icons*/
 .web-menu-icons.second span{cursor: default; font-size: 16px;}
 
-.web-menu-icons.second span:hover{cursor: pointer;}
+.web-menu-icons.second .joint{
+   position: relative;
+   display:inline-block;
+}
+
+ .dropdown-new{
+    position: absolute;
+    top:25px;
+    right:2px;
+    z-index: 1;
+    min-width: 140px;
+    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2);
+    background-color: #fffefe;
+    border-radius: 10px;
+}
+
+.dropdown-new a{font-size:13px;color:black; padding:8px 10px; text-decoration: none; display: block;}
+.dropdown-new a:hover:not(#signed-in) { color:white; background-color: #0b6fe0;cursor: pointer;}
+
+.dropdown-new p{cursor:default!important; margin:0; color:#56565e; padding: 10px 10px; font-size: 11px; border-top:1px solid rgb(210, 214, 219, 0.7) ;}
+.dropdown-new p:hover{color:#56565e;}
+
+.dropdown-new.sign{max-width:180px; top:47px; right:20px;};
+.dropdown-new.sign a{padding:8px 10px}
+
+.dropdown-new.sign .input-group{padding:13px 10px; border-top:1px solid rgb(210, 214, 219, 0.7); border-bottom: 1px solid rgb(210, 214, 219, 0.7);}
+.dropdown-new.sign .status-field{cursor:pointer; background-color: #ffffff; border:1px solid rgb(210, 214, 219, 0.7); padding:5px 20px ; border-radius: 5px; width:100%;}
+
+.dropdown-new.sign .status-field::placeholder{padding-left: 10px; color:#3a3a3a};
+.dropdown-new.sign .status-field::placeholder:hover{color:red!important}
+
+.dropdown-new.sign .input-group .octicon-smiley:hover{ fill:#0b6fe0!important}
+
+.dropdown-new.sign .icon{position: absolute!important;left:13px!important; padding: 0 5px;}
+
+#signed-in span:hover{color:initial}
+/*to show the dropdown on toggle the dropdown icon*/
+.show-new {display:none;}
+.show-sign {display:none;}
 
 /*mobile navigation*/
 .mobile-header-nav{
