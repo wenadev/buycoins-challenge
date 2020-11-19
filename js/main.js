@@ -7,7 +7,8 @@ let sectionTwo = document.querySelector(".section-content.two");
 
 let rootContainer = document.querySelector(".root-container");
 let stickyWeb = document.querySelector(".sticky-header.web");
-
+let dropDownNewButton = document.querySelector(".material-icons.new");
+let dropDownSignButton = document.querySelector(".material-icons.sign");
 
 //listen for click on the hamburger menu icon to display/hide mobile nav items
 hamburgerMenuIcon.addEventListener("click", ()=>{
@@ -23,6 +24,53 @@ hamburgerMenuIcon.addEventListener("click", ()=>{
     else if(menuState = "none"){
         mobileMenuItems.style.display="block";
     }
+});
+
+//first dropdown events
+dropDownNewButton.addEventListener("click", ()=>{
+    let dropDownNButton = document.querySelector(".dropdown-new.new");
+    let dropDownSButton = document.querySelector(".dropdown-new.sign");
+
+    //if second dropdown is displayed, close it
+    if(dropDownSButton.classList.contains("show-sign")){dropDownSButton.classList.remove("show-sign")}
+
+    //display first dropdown
+      dropDownNButton.classList.toggle("show-new");
+
+    //if first dropdown is displayed and user clicks on anywhwere on the screen close the dropdown
+    window.onclick= (event) =>{
+      if(!(event.target.matches(".material-icons.new")) || (event.target.matches(".material-icons.sign"))){
+
+        //close first dropdown
+          if(dropDownNButton.classList.contains('show-new')){
+              dropDownNButton.classList.remove('show-new');
+          }
+      }
+    }
+});
+
+//second dropdown events
+dropDownSignButton.addEventListener("click",()=>{
+    let dropDownSButton = document.querySelector(".dropdown-new.sign");
+    let dropDownNButton = document.querySelector(".dropdown-new");
+
+     //if first dropdown is displayed, close it
+    if(dropDownNButton.classList.contains("show-new")){dropDownNButton.classList.remove("show-new")}
+
+    //display second dropdown
+      dropDownSButton.classList.toggle("show-sign");
+
+      //if second dropdown is displayed and user clicks on anywhwere on the screen close the dropdown
+      window.onclick= (event) =>{
+        if(!(event.target.matches(".material-icons.sign")) || (event.target.matches(".material-icons.new"))){
+          console.log(dropDownSButton);
+
+          //close second dropdown
+          if(dropDownSButton.classList.contains('show-sign')){
+              dropDownSButton.classList.remove('show-sign')
+          }
+        }
+      }
 });
 
 //insert sticky header
@@ -184,7 +232,6 @@ let continuousWindowResizeEvents = ()=>{
             insertStickyHeader();
             insert();  
             mobileWindowScrollEvent();
-        
         }
         
         //listen and remove sticky header once if mobile screen is more than 770 pixels
@@ -206,15 +253,17 @@ let continuousWindowResizeEvents = ()=>{
             let stickyMobile = document.querySelector(".sticky-header.mobile");
             let stickyRow = document.querySelector(".sticky-header.mobile .sticky-row");
 
-        /*listen to when window is scrolled past the sum of the height of the content */ 
-        if(Math.round(this.pageYOffset) > Number(`${(mobileNavHeight + sectionMobileHeight)+10 }`)){
-            stickyMobile.style.height="auto";
-            stickyMobile.classList.add("fixed");
-        }
-        else if(Math.round(this.pageYOffset) < Number(`${(mobileNavHeight + sectionMobileHeight)+ 10 }`)){
-           stickyMobile.style.height="inherit";
-            stickyMobile.classList.remove("fixed");
-        }
+
+                    /*listen to when window is scrolled past the sum of the height of the content */ 
+              if(Math.round(this.pageYOffset) > Number(`${(mobileNavHeight + sectionMobileHeight)+10 }`)){
+                stickyMobile.style.height="auto";
+                stickyMobile.classList.add("fixed");
+                }
+
+                else if(Math.round(this.pageYOffset) < Number(`${(mobileNavHeight + sectionMobileHeight)+ 10 }`)){
+                  stickyMobile.style.height="inherit";
+                  stickyMobile.classList.remove("fixed");
+                }
     };
 })();
 
@@ -229,53 +278,56 @@ let continuousWindowResizeEvents = ()=>{
          let webProfile = document.querySelector(".web-profile-seperator").offsetHeight;
 
         
-         if(Math.round(this.pageYOffset) > Number(`${webNavHeight + 29}`))
-            {
-                stickyWeb.style.height="auto";
-                stickyWeb.classList.add("fixed");
+          //if sticky header elementfor mobile exists
+          if(typeof(stickyWeb) != 'undefined' && stickyWeb != null){
+                if(Math.round(this.pageYOffset) > Number(`${webNavHeight + 29}`))
+                    {
+                        stickyWeb.style.height="auto";
+                        stickyWeb.classList.add("fixed");
 
-                 //markup for profile for sticky header
-                 if(Math.round(this.pageYOffset) > (webProfile + 16) ){
-                    let markup=`
-                    <div class="sticky-row-content first">
-                        <div class="nav-profile joint">
-                        <div class="profile-pic">
-                            <img src="assets/profile-pic.jpg" alt="profile-picture wenadev">
-                        </div>
-                        <span>wenadev</span>
-                        </div>
-                    </div>
-                    `;
+                        //markup for profile for sticky header
+                        if(Math.round(this.pageYOffset) > (webProfile + 16) ){
+                            let markup=`
+                            <div class="sticky-row-content first">
+                                <div class="nav-profile joint">
+                                <div class="profile-pic">
+                                    <img src="assets/profile-pic.jpg" alt="profile-picture wenadev">
+                                </div>
+                                <span>wenadev</span>
+                                </div>
+                            </div>
+                            `;
 
-                    let stickyRowFirst = document.querySelector(".sticky-row-content.first");
+                            let stickyRowFirst = document.querySelector(".sticky-row-content.first");
 
-                    //get if profile for sticky web header exists or not
-                    if(typeof(stickyRowFirst) == 'undefined' || stickyRowFirst == null){
-                        //insert profile for sticky header 
-                        stickyRow.insertAdjacentHTML('afterbegin', markup);
-                    }else{
-                        //display profile for sticky web header 
-                        stickyRowFirst.style.display="inherit";
-                    }
-                }
-            
-                else if(Math.round(this.pageYOffset) < (webProfile - 16)){
-                    let stickyRowFirst = document.querySelector(".sticky-row-content.first");
+                            //get if profile for sticky web header exists or not
+                            if(typeof(stickyRowFirst) == 'undefined' || stickyRowFirst == null){
+                                //insert profile for sticky header 
+                                stickyRow.insertAdjacentHTML('afterbegin', markup);
+                            }else{
+                                //display profile for sticky web header 
+                                stickyRowFirst.style.display="inherit";
+                            }
+                        }
+                    
+                        else if(Math.round(this.pageYOffset) < (webProfile - 16)){
+                            let stickyRowFirst = document.querySelector(".sticky-row-content.first");
 
-                    //get if profile for sticky web header profile row exists or not   
-                    if(typeof(stickyRowFirst) != 'undefined' && stickyRowFirst != null){
-                        //hide profile for sticky web header 
-                        stickyRowFirst.style.display="none";
-                    }
-                }
-            } 
+                            //get if profile for sticky web header profile row exists or not   
+                            if(typeof(stickyRowFirst) != 'undefined' && stickyRowFirst != null){
+                                //hide profile for sticky web header 
+                                stickyRowFirst.style.display="none";
+                            }
+                        }
+                    } 
 
-        
-        else if(Math.round(this.pageYOffset) < Number(`${webNavHeight + (stickyWeb.offsetHeight - stickyRow.offsetHeight)}`)){
-            stickyWeb.style.height="";
-            stickyWeb.classList.remove("fixed");  
-        } 
-    }                  
+                
+                else if(Math.round(this.pageYOffset) < Number(`${webNavHeight + (stickyWeb.offsetHeight - stickyRow.offsetHeight)}`)){
+                    stickyWeb.style.height="";
+                    stickyWeb.classList.remove("fixed");  
+                } 
+            }                  
+        }
 })();
 
 //listen to window resizing event
@@ -289,13 +341,13 @@ window.onbeforeunload = mobileWindowScrollEvent();
 
  insertRepoData={
      noOfRepo : document.querySelector(".number-of-repos"),
-     mobileNoOfRepo : document.querySelector(".sticky-header.mobile #number-of-repos"),
+     mobileNoOfRepo : document.querySelector(".sticky-header.mobile .number-of-repos"),
      publicOrPrivateCount : document.querySelector("#public-private-count")
 };
 
 
 
-(repoData =()=>{
+(async function repoData(){
 
     //fetching data from Github's GraphQL API
   const query = `
@@ -350,7 +402,7 @@ window.onbeforeunload = mobileWindowScrollEvent();
     const urlEndpoint = "https://api.github.com/graphql";
     const header = {
         method: 'POST',
-        headers: { 'Authorization': "Bearer ba100b8f55ffdad10542c0b14836f5eb5dc1ff34", 'Content-Type': 'application/json' },
+        headers: { 'Authorization': "Bearer 438cf315271f94a1c9b5dbbf4acf71745f45fb6c", 'Content-Type': 'application/json' },
         body: JSON.stringify({ query })
     };
 
@@ -363,9 +415,9 @@ window.onbeforeunload = mobileWindowScrollEvent();
 
         //displaying number of repos found
         insertRepoData.noOfRepo.innerHTML=res.totalCount;
-        //insertRepoData.mobileNoOfRepo.innerHTML=res.totalCount;
+        insertRepoData.mobileNoOfRepo.innerHTML=res.totalCount;
         let dataContent= res.nodes;
-        console.log(dataContent)
+
         /**********************************************************************/
         //display number of public repositories
         let count = 0
@@ -383,26 +435,33 @@ window.onbeforeunload = mobileWindowScrollEvent();
             let day = date.getDate();
             let month = date.toLocaleString("en-US", {month: 'short'});
 
+            //if  month of update is within the present month 
             if(new Date().getMonth() == date.getMonth()){
+              //if  week of update is within the present week 
                 if ((new Date().getDate() - day) <= 7){
-                    return (new Date().getDate() - day) +" days ago";
+                  //if  day of update is within the day month 
+                  if((new Date().getDate() == date.getDate())){
+                    return (new Date().getHours()- date.getHours()) + " hours ago";
                 }
-            }
-
-            return "on " +month +" " +day +(new Date().getFullYear() == year ? "" : ", "+year) ;
+                else{
+                  return (new Date().getDate() - day) +" days ago";
+                }
+              }
         }
+        return "on " +month +" " +day +(new Date().getFullYear() == year ? "" : ", "+year) ;
+      }
 
         /**********************************************************************/
         dataContent.forEach((repo)=>{
             let markup=`
-            <div class="content-items">
+            <div class="content-items" style="display:${(repo.isPrivate ? "none" : "flex")}">
             <div class="item-detail first">
             <p class="repo-name"><a href="${repo.url}">${repo.name}</a></p>
             <p class="repo-fork-link" style="display: ${repo.isFork ? "block" : "none"}">Forked from <a href="${repo.isFork ? repo.parent.url : ""}">${repo.isFork ? repo.parent.url.slice(19) : ""}</a></p>
             <p class="repo-description" style="display:${(repo.description==null) ? "none" : "block"}">${repo.description===null ? "" : repo.description}</p>
             <div class="item-description">
                 <p class="repo-language"><span class="repo-colour" style="background-color:${repo.primaryLanguage.color}"></span>${repo.primaryLanguage.name}</p>
-                <p class="repo-forks" style="display:${(repo.forkCount > 0 || (repo.parent != null && repo.parent.forkCount > 0)) ? "block" : "none"}">
+                <p class="repo-forks" style="display:${(repo.forkCount > 0 || (repo.parent != null && repo.parent.forkCount > 0)) ? "flex" : "none"}">
                 <svg fill="#6b6b6b" aria-label="fork" class="octicon octicon-repo-forked" viewBox="0 0 16 16" version="1.1" width="16" height="16" role="img">
                     <path fill-rule="evenodd" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 
                     2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 
