@@ -13,7 +13,6 @@
     <a href="https://github.com/wenadev/buycoins-challenge">
       Code Solution
     </a>
-    <span> | </span>
   </h3>
 </div>
 
