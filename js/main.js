@@ -402,7 +402,7 @@ window.onbeforeunload = mobileWindowScrollEvent();
     const urlEndpoint = "https://api.github.com/graphql";
     const header = {
         method: 'POST',
-        headers: { 'Authorization': "Bearer 438cf315271f94a1c9b5dbbf4acf71745f45fb6c", 'Content-Type': 'application/json' },
+        headers: { 'Authorization': "Bearer GITHUB_TOKEN", 'Content-Type': 'application/json' },
         body: JSON.stringify({ query })
     };
 
@@ -414,8 +414,14 @@ window.onbeforeunload = mobileWindowScrollEvent();
     .then(res=>{
 
         //displaying number of repos found
-        insertRepoData.noOfRepo.innerHTML=res.totalCount;
-        insertRepoData.mobileNoOfRepo.innerHTML=res.totalCount;
+        if(typeof(insertRepoData.noOfRepo) != undefined && insertRepoData.noOfRepo != null){
+          insertRepoData.noOfRepo.innerHTML=res.totalCount;
+        }
+
+        if(typeof(insertRepoData.mobileNoOfRepo) != undefined && insertRepoData.mobileNoOfRepo != null){
+          insertRepoData.mobileNoOfRepo.innerHTML=res.totalCount;
+        }
+  
         let dataContent= res.nodes;
 
         /**********************************************************************/
@@ -439,12 +445,15 @@ window.onbeforeunload = mobileWindowScrollEvent();
             if(new Date().getMonth() == date.getMonth()){
               //if  week of update is within the present week 
                 if ((new Date().getDate() - day) <= 7){
-                  //if  day of update is within the day month 
+                  //if  day of update is within the present month 
                   if((new Date().getDate() == date.getDate())){
-                    return (new Date().getHours()- date.getHours()) + " hours ago";
+                    //if  hour of update is within the present hour   
+                    let hour = new Date().getHours()- date.getHours();               
+                      return hour + (hour > 1 ? " hours ago" : " hour ago");
                 }
                 else{
-                  return (new Date().getDate() - day) +" days ago";
+                  let computedDay = new Date().getDate() - day;
+                  return computedDay +(computedDay > 1 ? " days ago" : " day ago");
                 }
               }
         }
