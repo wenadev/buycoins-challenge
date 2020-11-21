@@ -1,7 +1,7 @@
 <h1 align="center">BuyCoins Challenge</h1>
 
 <div align="center">
-   Solution for challenge for FrontEnd Engineer Role
+   Solution to the challenge for front-end engineers.
 </div>
 
 <div align="center">
@@ -23,7 +23,6 @@
 
 - [Overview](#overview)
   - [Built With](#built-with)
-- [Features](#features)
 - [Contact](#contact)
 
 <!-- OVERVIEW -->
