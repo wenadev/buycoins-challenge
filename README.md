@@ -27,8 +27,8 @@
 <!-- OVERVIEW -->
 
 ## Overview
--The project was built with [Github's GraphQL API](https://developer.github.com/v4/explorer/)
--Challenge was to recreate a github page that lists out my personal repositories.
+- The project was built with [Github's GraphQL API](https://developer.github.com/v4/explorer/)
+- Challenge was to recreate a github page that lists out my personal repositories.
 
 ![screenshot](assets/preview.png)
 
