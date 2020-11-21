@@ -44,3 +44,4 @@
 
 - GitHub [@wenadev](https://github.com/wenadev)
 - Twitter [@mawuennaa](https://twitter.com/mawuennaa)
+- LinkedIn [@Temitayo Hayes](https://www.linkedin.com/in/temitayo-hayes-86426a17a/)
