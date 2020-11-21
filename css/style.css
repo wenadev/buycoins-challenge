@@ -31,17 +31,13 @@ header{
 /*web navigation*/
 .web-header-nav{
     padding: 20px 32px;
-    height:62px;
     display: flex;
     align-items: center;
+    height:62px;
     justify-content: space-between;
 }@media only screen and (max-width: 770px) {
     .web-header-nav{
         display:none;
-    }
-}@media only screen and (max-width: 1010px) {
-    .web-header-nav{
-        padding: 18px;
     }
 }
 
@@ -82,8 +78,10 @@ header{
 
 /*web nav search key slash*/
 .web-menu-icons .input-group .icon { 
-    position: relative;
-    right:33px;
+    position:relative;
+    right:35px;
+    min-height: 10px;
+    fill:#505050;
 }
 
 /*web nav text*/
@@ -145,6 +143,10 @@ header{
 .dropdown-new.sign .input-group .octicon-smiley{fill:#66666e;min-height: 0;position: absolute!important;left:13px!important; padding: 0 5px;}
 .dropdown-new.sign .input-group :hover{ fill:#0b6fe0!important}
 
+.dropdown-new.sign .input-group .octicon-smiley{
+    position: absolute;
+    left:10px;
+}
 
 #signed-in span:hover{color:initial}
 
@@ -192,6 +194,7 @@ svg{min-height: 100%;}
     align-items: flex-end;
     min-width:100%;
     padding: 0 27px 0 27px;
+    height:72px;
 }
 
 /*aligns mobile to mobile to right*/
@@ -229,7 +232,7 @@ svg{min-height: 100%;}
 /*aligns mobile to left*/
 .sticky-header.mobile .sticky-row{justify-content: flex-start;}
 
-.sticky-header.mobile .sticky-row-content{display:flex; align-items: center;}
+.sticky-header.mobile .sticky-row-content{border:1px solid transparent;display:flex; align-items: center;}
 
 /*profile attached to sticky header*/
 .sticky-row-content.first{
@@ -268,6 +271,7 @@ svg{min-height: 100%;}
     justify-self: flex-end;
     align-self: flex-end;
     width:75%;
+    padding-left:8px;
 }
 
 
@@ -575,7 +579,7 @@ section{
 
 .section-content.two .status-field:disabled{
     width: 100%; 
-    padding: 6px 10px; 
+    padding: 8px 10px; 
     text-align: center;  
     outline: none;
     border-radius: 7px;
@@ -623,6 +627,8 @@ section{
     .content-items .item-detail.first .repo-fork-link{font-size: 9px!important;}
 }
 
+.content-items .item-detail.first{width: auto;}
+
 .content-items .item-detail.first .repo-name{
     font-size:20px; 
     letter-spacing: 0.1px; 
@@ -638,14 +644,15 @@ section{
 
 .content-items .item-detail.first .repo-fork-link a{text-decoration: none; cursor: pointer;color:#4b4b53;}
 .content-items .item-detail.first .repo-fork-link a:hover{color:#0b6fe0;}
-.content-items .item-detail.first .repo-description{font-size: 13px; color:#56565e; font-weight: 400; max-width:98%}
+.content-items .item-detail.first .repo-description{font-size: 12.5px; color:#56565e; font-weight: 400; max-width:98%}
 
 .content-items .item-description{
     display:flex;
     flex-direction: row;
     margin-top: 20px;
-
 }
+
+.content-items .item-description p{font-size: 12px;}
 
 .item-description .repo-language, .item-description .repo-forks{margin-right: 16px!important; align-items: center!important;}
 
