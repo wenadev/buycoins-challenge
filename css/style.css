@@ -229,6 +229,19 @@ svg{min-height: 100%;}
     top:0;
 }
 
+/*to make header stick smoothly*/
+@media screen and (min-width:770px){
+    .fixed + section{padding-top:75px}
+
+}
+
+@media screen and (max-width:770px){
+    .fixed + .section-content.two{padding-top: 95px;}
+}
+
+.fixed + .section-content.two{padding-top: 10px;}
+
+
 /*aligns mobile to left*/
 .sticky-header.mobile .sticky-row{justify-content: flex-start;}
 
