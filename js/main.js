@@ -286,7 +286,7 @@ let continuousWindowResizeEvents = ()=>{
                         stickyWeb.classList.add("fixed");
 
                         //markup for profile for sticky header
-                        if(Math.round(this.pageYOffset) > (webProfile + 16) ){
+                        if(Math.round(this.pageYOffset) > (webProfile + 91) ){
                             let markup=`
                             <div class="sticky-row-content first">
                                 <div class="nav-profile joint">
@@ -310,7 +310,7 @@ let continuousWindowResizeEvents = ()=>{
                             }
                         }
                     
-                        else if(Math.round(this.pageYOffset) < (webProfile - 16)){
+                        else if(Math.round(this.pageYOffset) < (webProfile + 50)){
                             let stickyRowFirst = document.querySelector(".sticky-row-content.first");
 
                             //get if profile for sticky web header profile row exists or not   
@@ -435,30 +435,43 @@ window.onbeforeunload = mobileWindowScrollEvent();
 
         //function to format updated date on repo
         function formatDate(timing) {
-            let date = new Date(timing);
+          let date = new Date(timing);
 
-            let year = date.getFullYear();
-            let day = date.getDate();
-            let month = date.toLocaleString("en-US", {month: 'short'});
+          let year = date.getFullYear();
+          let day = date.getDate();
+          let month = date.toLocaleString("en-US", {month: 'short'});
 
-            //if  month of update is within the present month 
-            if(new Date().getMonth() == date.getMonth()){
-              //if  week of update is within the present week 
-                if ((new Date().getDate() - day) <= 7){
-                  //if  day of update is within the present month 
-                  if((new Date().getDate() == date.getDate())){
-                    //if  hour of update is within the present hour   
-                    let hour = new Date().getHours()- date.getHours();               
-                      return hour + (hour > 1 ? " hours ago" : " hour ago");
-                }
-                else{
-                  let computedDay = new Date().getDate() - day;
-                  return computedDay +(computedDay > 1 ? " days ago" : " day ago");
-                }
+          //if  month of update is within the present month 
+          if(new Date().getMonth() == date.getMonth()){
+            //if  week of update is within the present week 
+              if ((new Date().getDate() - day) <= 7){
+                //if  day of update is within the present month 
+                if((new Date().getDate() == date.getDate())){
+                  //if  minutes of update is within the present 60 minutes
+                    if(new Date(). getMinutes() == date.getMinutes()){
+                      return " some minutes ago"
+                    }
+
+                    else if(new Date().getHours() <= new Date().getHours()){
+                        //if  hour of update is within the present hour   
+                        let hour = new Date().getHours()- date.getHours(); 
+                        if(hour == 0){
+                          return " some minutes ago"
+                        }
+                        else{
+                          return hour + (hour > 1 ? " hours ago" : " hour ago");
+                        }
+                      }
+
               }
-        }
-        return "on " +month +" " +day +(new Date().getFullYear() == year ? "" : ", "+year) ;
+              else{
+                let computedDay = new Date().getDate() - day;
+                return computedDay +(computedDay > 1 ? " days ago" : " day ago");
+              }
+            }
       }
+      return "on " +month +" " +day +(new Date().getFullYear() == year ? "" : ", "+year) ;
+    }
 
         /**********************************************************************/
         dataContent.forEach((repo)=>{
