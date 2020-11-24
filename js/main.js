@@ -215,119 +215,121 @@ let continuousWindowResizeEvents = ()=>{
     }
 }
 
-//insert status and bio invoked automatically
- (insert =()=>{
-    if(window.innerWidth <= 770){
-        statusAndBioMarkup();
-        insertStickyHeader();
-    }
- })();
+//event handler for sticky header for web
+(webWindowScrollEvent = ()=>{
+  window.addEventListener('scroll', ()=>{
+    //get web height of content before sticky header
+    let webNavHeight = document.querySelector(".web-header-nav").offsetHeight;
+    let stickyWeb = document.querySelector(".sticky-header.web");
+    let stickyRow = document.querySelector(".sticky-header.web .sticky-row");
+    let webProfile = document.querySelector(".web-profile-seperator").offsetHeight;
 
-//fire once
-( singleWindowResizeEvents = ()=>{
-    window.onresize = () => {
-        //listen and insert sticky header once if mobile screen is less than 770 pixels
-        
-        if(window.innerWidth <= 770){
-            insertStickyHeader();
-            insert();  
-            mobileWindowScrollEvent();
-        }
-        
-        //listen and remove sticky header once if mobile screen is more than 770 pixels
-        else if(window.innerWidth > 770){
-            
-                removeStickyHeader();
-                removeStatusAndBio();  
-                webWindowScrollEvent();    
-        }
-    };
+     //if sticky header elementfor mobile exists
+     if(typeof(stickyWeb) != 'undefined' && stickyWeb != null){
+       
+       if(Math.round(this.pageYOffset) > Number(`${webNavHeight + 29}`))
+               {
+                   stickyWeb.style.height="auto";
+                   stickyWeb.classList.add("fixed");
+
+                   //markup for profile for sticky header
+                   if(Math.round(this.pageYOffset) > (webProfile + 91) ){
+                       let markup=`
+                       <div class="sticky-row-content first">
+                           <div class="nav-profile joint">
+                           <div class="profile-pic">
+                               <img src="profile-pic.jpg" alt="profile-picture wenadev">
+                           </div>
+                           <span>wenadev</span>
+                           </div>
+                       </div>
+                       `;
+
+                       let stickyRowFirst = document.querySelector(".sticky-row-content.first");
+
+                       //get if profile for sticky web header exists or not
+                       if(typeof(stickyRowFirst) == 'undefined' || stickyRowFirst == null){
+                           //insert profile for sticky header 
+                           stickyRow.insertAdjacentHTML('afterbegin', markup);
+                       }else{
+                           //display profile for sticky web header 
+                           stickyRowFirst.style.display="inherit";
+                       }
+                   }
+               
+                   else if(Math.round(this.pageYOffset) < (webProfile + 50)){
+                       let stickyRowFirst = document.querySelector(".sticky-row-content.first");
+
+                       //get if profile for sticky web header profile row exists or not   
+                       if(typeof(stickyRowFirst) != 'undefined' && stickyRowFirst != null){
+                           //hide profile for sticky web header 
+                           stickyRowFirst.style.display="none";
+                       }
+                   }
+               } 
+
+           
+           else if(Math.round(this.pageYOffset) < Number(`${webNavHeight + (stickyWeb.offsetHeight - stickyRow.offsetHeight)}`)){
+               stickyWeb.style.height="";
+               stickyWeb.classList.remove("fixed");  
+           } 
+       }                  
+  })
 })();
+
+
 
 //event handler for sticky header for profile
 ( mobileWindowScrollEvent = ()=>{
-    window.onscroll = () => {
-        //get mobile height of content before sticky header
-            let mobileNavHeight = document.querySelector(".mobile-header-nav").offsetHeight;
-            let sectionMobileHeight = document.querySelector(".section-content.one ").offsetHeight;
-            let stickyMobile = document.querySelector(".sticky-header.mobile");
-            let stickyRow = document.querySelector(".sticky-header.mobile .sticky-row");
+  window.onscroll = () => {
+      //get mobile height of content before sticky header
+          let mobileNavHeight = document.querySelector(".mobile-header-nav").offsetHeight;
+          let sectionMobileHeight = document.querySelector(".section-content.one ").offsetHeight;
+          let stickyMobile = document.querySelector(".sticky-header.mobile");
 
 
-                    /*listen to when window is scrolled past the sum of the height of the content */ 
-              if(Math.round(this.pageYOffset) > Number(`${(mobileNavHeight + sectionMobileHeight)+10 }`)){
-                stickyMobile.style.height="auto";
-                stickyMobile.classList.add("fixed");
-                }
-
-                else if(Math.round(this.pageYOffset) < Number(`${(mobileNavHeight + sectionMobileHeight)+ 10 }`)){
-                  stickyMobile.style.height="inherit";
-                  stickyMobile.classList.remove("fixed");
-                }
-    };
+          if(typeof(stickyMobile)!= undefined && stickyMobile != null){
+                 /*listen to when window is scrolled past the sum of the height of the content */ 
+                 if(Math.round(this.pageYOffset) > Number(`${(mobileNavHeight + sectionMobileHeight)+10 }`)){
+                  stickyMobile.style.height="auto";
+                  stickyMobile.classList.add("fixed");
+                  }
+  
+                  else if(Math.round(this.pageYOffset) < Number(`${(mobileNavHeight + sectionMobileHeight)+ 10 }`)){
+                    stickyMobile.style.height="inherit";
+                    stickyMobile.classList.remove("fixed");
+                  } 
+          }
+  };
 })();
 
-//event handler for sticky header for web
-(webWindowScrollEvent = ()=>{
-    window.onscroll = () => 
-    {
-         //get web height of content before sticky header
-         let webNavHeight = document.querySelector(".web-header-nav").offsetHeight;
-         let stickyWeb = document.querySelector(".sticky-header.web");
-         let stickyRow = document.querySelector(".sticky-header.web .sticky-row");
-         let webProfile = document.querySelector(".web-profile-seperator").offsetHeight;
+//insert status and bio invoked automatically
+(insert =()=>{
+  if(window.innerWidth <= 770){
+      statusAndBioMarkup();
+      insertStickyHeader();
+  }
+})();
 
-        
-          //if sticky header elementfor mobile exists
-          if(typeof(stickyWeb) != 'undefined' && stickyWeb != null){
-                if(Math.round(this.pageYOffset) > Number(`${webNavHeight + 29}`))
-                    {
-                        stickyWeb.style.height="auto";
-                        stickyWeb.classList.add("fixed");
-
-                        //markup for profile for sticky header
-                        if(Math.round(this.pageYOffset) > (webProfile + 91) ){
-                            let markup=`
-                            <div class="sticky-row-content first">
-                                <div class="nav-profile joint">
-                                <div class="profile-pic">
-                                    <img src="assets/profile-pic.jpg" alt="profile-picture wenadev">
-                                </div>
-                                <span>wenadev</span>
-                                </div>
-                            </div>
-                            `;
-
-                            let stickyRowFirst = document.querySelector(".sticky-row-content.first");
-
-                            //get if profile for sticky web header exists or not
-                            if(typeof(stickyRowFirst) == 'undefined' || stickyRowFirst == null){
-                                //insert profile for sticky header 
-                                stickyRow.insertAdjacentHTML('afterbegin', markup);
-                            }else{
-                                //display profile for sticky web header 
-                                stickyRowFirst.style.display="inherit";
-                            }
-                        }
-                    
-                        else if(Math.round(this.pageYOffset) < (webProfile + 50)){
-                            let stickyRowFirst = document.querySelector(".sticky-row-content.first");
-
-                            //get if profile for sticky web header profile row exists or not   
-                            if(typeof(stickyRowFirst) != 'undefined' && stickyRowFirst != null){
-                                //hide profile for sticky web header 
-                                stickyRowFirst.style.display="none";
-                            }
-                        }
-                    } 
-
-                
-                else if(Math.round(this.pageYOffset) < Number(`${webNavHeight + (stickyWeb.offsetHeight - stickyRow.offsetHeight)}`)){
-                    stickyWeb.style.height="";
-                    stickyWeb.classList.remove("fixed");  
-                } 
-            }                  
-        }
+//fire once
+( singleWindowResizeEvents = ()=>{
+  window.onresize = () => {
+      //listen and insert sticky header once if mobile screen is less than 770 pixels
+      
+      if(window.innerWidth <= 770){
+          insertStickyHeader();
+          insert();  
+          mobileWindowScrollEvent();
+      }
+      
+      //listen and remove sticky header once if mobile screen is more than 770 pixels
+      else if(window.innerWidth > 770){
+          
+              removeStickyHeader();
+              removeStatusAndBio();  
+              webWindowScrollEvent();    
+      }
+  };
 })();
 
 //listen to window resizing event
@@ -345,6 +347,9 @@ window.onbeforeunload = mobileWindowScrollEvent();
      publicOrPrivateCount : document.querySelector("#public-private-count")
 };
 
+function decodeToken(token){
+  return atob(token);
+}
 
 
 (async function repoData(){
@@ -402,7 +407,7 @@ window.onbeforeunload = mobileWindowScrollEvent();
     const urlEndpoint = "https://api.github.com/graphql";
     const header = {
         method: 'POST',
-        headers: { 'Authorization': "Bearer GITHUB_TOKEN", 'Content-Type': 'application/json' },
+        headers: { 'Authorization': `Bearer ${decodeToken("MTgyMGU0MDk1ZTc5ZDI2Njg4N2FlZjM2MjJlZTg5MjAxMWIzYTI4Nw==")}` , 'Content-Type': 'application/json' },
         body: JSON.stringify({ query })
     };
 
@@ -435,43 +440,43 @@ window.onbeforeunload = mobileWindowScrollEvent();
 
         //function to format updated date on repo
         function formatDate(timing) {
-          let date = new Date(timing);
+            let date = new Date(timing);
 
-          let year = date.getFullYear();
-          let day = date.getDate();
-          let month = date.toLocaleString("en-US", {month: 'short'});
+            let year = date.getFullYear();
+            let day = date.getDate();
+            let month = date.toLocaleString("en-US", {month: 'short'});
 
-          //if  month of update is within the present month 
-          if(new Date().getMonth() == date.getMonth()){
-            //if  week of update is within the present week 
-              if ((new Date().getDate() - day) <= 7){
-                //if  day of update is within the present month 
-                if((new Date().getDate() == date.getDate())){
-                  //if  minutes of update is within the present 60 minutes
-                    if(new Date(). getMinutes() == date.getMinutes()){
-                      return " some minutes ago"
-                    }
-
-                    else if(new Date().getHours() <= new Date().getHours()){
-                        //if  hour of update is within the present hour   
-                        let hour = new Date().getHours()- date.getHours(); 
-                        if(hour == 0){
-                          return " some minutes ago"
-                        }
-                        else{
-                          return hour + (hour > 1 ? " hours ago" : " hour ago");
-                        }
+            //if  month of update is within the present month 
+            if(new Date().getMonth() == date.getMonth()){
+              //if  week of update is within the present week 
+                if ((new Date().getDate() - day) <= 7){
+                  //if  day of update is within the present month 
+                  if((new Date().getDate() == date.getDate())){
+                    //if  minutes of update is within the present 60 minutes
+                      if(new Date(). getMinutes() == date.getMinutes()){
+                        return " some minutes ago"
                       }
 
+                      else if(new Date().getHours() <= new Date().getHours()){
+                          //if  hour of update is within the present hour   
+                          let hour = new Date().getHours()- date.getHours(); 
+                          if(hour == 0){
+                            return " some minutes ago"
+                          }
+                          else{
+                            return hour + (hour > 1 ? " hours ago" : " hour ago");
+                          }
+                        }
+
+                }
+                else{
+                  let computedDay = new Date().getDate() - day;
+                  return computedDay +(computedDay > 1 ? " days ago" : " day ago");
+                }
               }
-              else{
-                let computedDay = new Date().getDate() - day;
-                return computedDay +(computedDay > 1 ? " days ago" : " day ago");
-              }
-            }
+        }
+        return "on " +month +" " +day +(new Date().getFullYear() == year ? "" : ", "+year) ;
       }
-      return "on " +month +" " +day +(new Date().getFullYear() == year ? "" : ", "+year) ;
-    }
 
         /**********************************************************************/
         dataContent.forEach((repo)=>{
